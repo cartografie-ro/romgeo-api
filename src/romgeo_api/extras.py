@@ -6,12 +6,12 @@ import logging
 
 # LATEST
 
-PREGEX_DMS = r"([NEne]?)(\d+)(\D+)(\d+)(\D+)([\d.]+)(\D)*"
-PREGEX_DMS3= r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s1>[\s,;\t])(?P<lon>([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
-PREGEX_DMS4= r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+PREGEX_DMS   = r"([NEne]?)(\d+)(\D+)(\d+)(\D+)([\d.]+)(\D)*"
+PREGEX_DMS4a = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s1>[\s,;\t])(?P<lon>([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+PREGEX_DMS4  = r"((?P<name>([\w\-\S])*)(?P<s0>[\s,;\t])*)(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
 
 BBOX_RO_ST70 = [116424.61, 215561.44, 1018946.51, 771863.53] 
-BBOX_RO_ETRS = [    20.26,     43.44,      31.41,     48.27] 
+BBOX_RO_ETRS = [    20.26,     43.44,      31.41,     48.27]
 
 def is_DMS(val):
     """is the value in degree minutes seconds
@@ -92,28 +92,6 @@ def dd_or_dms(x):
             return np.nan
             #raise Exception("Bad Value") 
 
-def dd3_or_dms3(x):
-    """Converts parameter to decimal dgrees
-    Args:
-        x (string, float, whatever): value to be converted
-    Raises:
-        Exception: "Bad Value" conversion cannot be done
-    Returns:
-        float: Decimal degrees
-    """
-    import re
-    try:
-        x = re.search(PREGEX_DMS3,x).groupdict()
-
-        la = float(x['lat_d'] ) + float(x['lat_m']) /60 + float(x['lat_s']) /3600
-        lo = float(x['lon_d']) + float(x['lon_m'])/60 + float(x['lon_s'])/3600
-        he = float(x['height'])
-        
-        return la, lo, he
-    except:
-        return np.nan, np.nan, np.nan
-        #raise Exception("Bad Value") 
-
 def dd4_or_dms4(x) -> tuple[float, float, float, str]:
     """Converts parameter to decimal dgrees
     Args:
@@ -153,6 +131,7 @@ def dd4_or_dms4(x) -> tuple[float, float, float, str]:
         
         return la, lo, he, pointName
     except:
+        #print(f"Bad value {x}")
         return np.nan, np.nan, np.nan, "error"
         #raise Exception("Bad Value") 
 
