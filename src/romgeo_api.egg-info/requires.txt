@@ -1,5 +1,0 @@
-fastapi
-romgeo
-numba
-numpy
-pandas
