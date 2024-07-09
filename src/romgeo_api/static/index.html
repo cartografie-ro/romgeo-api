@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RomGEO Coordinates Transform API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            text-align: left;
+        }
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: left;
+        }
+        .info {
+            text-align: left;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .docs {
+            text-align: right;
+            color: #666;
+            font-size: 0.7em;
+        }
+        footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #666;
+        }
+        footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        async function transformCoord() {
+            const coord = document.getElementById('coord').value;
+            try {
+                const response = await fetch(`transformText/${encodeURIComponent(coord)}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+            } catch (error) {
+                document.getElementById('result').innerText = 'Error: ' + error.message;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>RomGEO Coordinates Transform API</h1>
+		<h3>ETRS98 to Stereo70 (EPSG:3844)</h3>
+        <div class="info">
+            <p>Enter the coordinates in the following format:</p>
+            <ul>
+                <li>Point Name: Optional, preferable without spaces.</li>
+                <li>Latitude, Longitude: Required, decimal degrees or degrees, minutes, seconds. May include N or E annotations. For any decimal value, please add .0 in case of an integer, e.g., 23.0</li>
+                <li>Ellipsoidal Height: Required, should be a decimal value.</li>
+                <li>Separator: Can be almost any set of characters like space, comma, semicolon, tab, etc. except digits 0-9, decimal point, or minus sign.</li>
+                <li>Result: <strong>point_name, lat, lon, elipsoidal_height, X_northing, Y_easting, Z_blacksea</strong>, plus other info</li>
+            </ul>
+        </div>
+        <form onsubmit="event.preventDefault(); transformCoord();">
+            <label for="coord">ETRS coord:</label>
+            <input type="text" id="coord" name="coord" placeholder="Point_1 N45&deg;25&apos;35.123456&quot; E25&deg;15&apos;45.123456&quot; 123.4567">
+            <button type="submit">Transform</button>
+        </form>
+        <pre id="result"></pre>
+        <div class="docs"><a href="/docs">Click here for documentation</a></div>
+    </div>
+    <footer>
+        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/">
+            <a property="dct:title" rel="cc:attributionURL" href="https://github.com/cartografie-ro/romgeo_api">RomGEO API</a> by 
+            <a rel="cc:attributionURL dct:creator" property="cc:attributionName" href="https://cartografie.ro">Centrul National de Cartografie</a> 
+            is licensed under 
+            <a href="https://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">
+                Creative Commons Attribution-ShareAlike 4.0 International
+                <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt="">
+                <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt="">
+                <img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1" alt="">
+            </a>
+        </p>
+    </footer>
+</body>
+</html>

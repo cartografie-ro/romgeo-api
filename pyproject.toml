@@ -1,0 +1,32 @@
+[project]
+name = "romgeo_api"
+version = "0.1.0"
+authors = [
+  { name="Mihail-Alexandru CRETU", email="office@romgeo.ro" },
+]
+
+description = "A simple FastAPI implementation for romgeo. High speed single-coord and multi-coord datum transformation."
+keywords = ["romgeo", "datum transformation", "stereo70", "EPSG:3844", "Romania"]
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.10"
+license = {file = "LICENSE"}
+
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.10",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+  "fastapi",
+  "romgeo",
+  "numba",
+  "numpy",
+  "pandas",  
+]
+
+[project.urls]
+Homepage = "https://romgeo.ro/api"
+Documentation = "https://github.com/cartografie-ro/romgeo_api/docs/"
+Changelog  = "https://github.com/cartografie-ro/romgeo_api/docs/CHANGELOG.md"
+Issues = "https://github.com/cartografie-ro/romgeo_api/issues"
+
