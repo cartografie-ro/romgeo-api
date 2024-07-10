@@ -27,7 +27,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://romgeo.ro/api"
-Documentation = "https://github.com/cartografie-ro/romgeo_api/docs/"
-Changelog  = "https://github.com/cartografie-ro/romgeo_api/docs/CHANGELOG.md"
-Issues = "https://github.com/cartografie-ro/romgeo_api/issues"
+Documentation = "https://github.com/cartografie-ro/romgeo-api/docs/"
+Changelog  = "https://github.com/cartografie-ro/romgeo-api/docs/CHANGELOG.md"
+Issues = "https://github.com/cartografie-ro/romgeo-api/issues"
 
