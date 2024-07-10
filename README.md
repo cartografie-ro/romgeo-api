@@ -5,6 +5,7 @@ A simple FastAPI implementation of romgeo.
 ## Requirements
  - romgeo
  - fastapi
+ - simplejson
  - numba
  - numpy
  - pandas
@@ -30,4 +31,4 @@ Also, you can change the mode from development to production by changing *dev* t
 
 ## Documentation is available on github
 
-<https://github.com/cartografie-ro/romgeo_api>
+<https://github.com/cartografie-ro/romgeo-api>
