@@ -1,0 +1,13 @@
+LICENSE
+MANIFEST.in
+README.md
+pyproject.toml
+src/romgeo_api/__init__.py
+src/romgeo_api/extras.py
+src/romgeo_api/romgeo_api.py
+src/romgeo_api.egg-info/PKG-INFO
+src/romgeo_api.egg-info/SOURCES.txt
+src/romgeo_api.egg-info/dependency_links.txt
+src/romgeo_api.egg-info/requires.txt
+src/romgeo_api.egg-info/top_level.txt
+src/romgeo_api/static/index.html
