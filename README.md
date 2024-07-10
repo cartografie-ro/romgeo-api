@@ -6,6 +6,7 @@ A simple FastAPI implementation of romgeo.
  - romgeo
  - fastapi
  - simplejson
+ - simplejson
  - numba
  - numpy
  - pandas
