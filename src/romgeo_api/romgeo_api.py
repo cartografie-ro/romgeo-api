@@ -28,9 +28,10 @@ app = FastAPI(
 
 @app.get("/transformText/{text}" )
 def Convert_Text(text:str,
-                 grid:str =Query("latest",description="RO Grid version number, latest for latest available grid"),
-                 srs:str  =Query("4326",  description="Source EPSG Code, only EPSG:4326 (ETRS89) is currently supported"),
-                 crs:str  =Query("3844",  description="Destination EPSG Code, only EPSG:3844 (Stere70) is currently supported")):
+                 grid:str    =Query("latest",description="RO Grid version number, latest for latest available grid"),
+                 srs:str     =Query("4326",  description="Source EPSG Code, only EPSG:4326 (ETRS89) is currently supported"),
+                 crs:str     =Query("3844",  description="Destination EPSG Code, only EPSG:3844 (Stere70) is currently supported"),
+                 astext:bool =Query(False,   description="Output as text only")):
 
     N,E,H, pct = dd4_or_dms4(text)
 
@@ -60,7 +61,12 @@ def Convert_Text(text:str,
         print(ret)
         ret = "Input error or Out of bounds."
 
-    return {"result": ret, "grid":grid, "grid_version":t.grid_version, "srs": srs, "crs": crs}
+    if astext:
+        print(ret)
+        return f"{ret}"
+    else:
+        return {"result": ret, "grid":grid, "grid_version":t.grid_version, "srs": srs, "crs": crs}
+
 
 @app.get("/transformCoord/{lat}/{lon}/{he}/")
 def Convert_LatLon(lat:str, 
@@ -68,7 +74,8 @@ def Convert_LatLon(lat:str,
                    he:str , 
                    grid:str=Query("latest",description="RO Grid version number, latest for latest available grid"),  
                    srs:str =Query("4326",  description="Source EPSG Code, only EPSG:4326 (ETRS89) is currently supported"),  
-                   crs:str =Query("3844",  description="Destination EPSG Code, only EPSG:3844 (Stere70) is currently supported")):
+                   crs:str =Query("3844",  description="Destination EPSG Code, only EPSG:3844 (Stere70) is currently supported"),
+                   astext:bool =Query(False,  description="Output as text only")):
 
     lat = dd_or_dms(lat)
     lon = dd_or_dms(lon)
@@ -98,7 +105,11 @@ def Convert_LatLon(lat:str,
         print(ret)
         ret = "Input error or Out of bounds."
 
-    return {"result": ret, "grid":grid, "grid_version":t.grid_version, "srs": srs, "crs": crs}
+    if astext:
+        print(ret)
+        return f"{ret}"
+    else:
+        return {"result": ret, "grid":grid, "grid_version":t.grid_version, "srs": srs, "crs": crs}
 
 @app.get("/transformMultiText/")
 def Convert_MultiText(multiText:list[str]=Query(DEF_MULTILIST,description="list of texts to convert, see /transformText/ for formatting",), 
