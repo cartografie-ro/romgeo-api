@@ -6,7 +6,7 @@
 O implementare simplă FastAPI a romgeo.
 
 ## Servicii online disponibile:
-- Servicii Web API: [api.romgeo.ro](https://api.romgeo.ro/api/v1/demo.html)
+- Servicii Web API: [api.romgeo.ro](https://api.romgeo.ro/api/v1/demo.html#ro)
 - Ghid pentru serviciile API: [api.romgeo.ro/api/v1/docs](https://api.romgeo.ro/api/v1/docs)
 
 ## Cerințe
