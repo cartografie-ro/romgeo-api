@@ -1,0 +1,6 @@
+pandas
+shapely
+ezdxf
+psutil
+fastapi
+geopandas
