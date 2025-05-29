@@ -1,6 +1,0 @@
-fastapi
-romgeo
-simplejson
-numba
-numpy
-pandas
