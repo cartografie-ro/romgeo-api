@@ -7,49 +7,25 @@ import logging
 # LATEST
 
 PREGEX_DMS   = r"([NEne]?)(\d+)(\D+)(\d+)(\D+)([\d.]+)(\D)*"
-#PREGEX_DMS4a = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s1>[\s,;\t])(?P<lon>([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
-#PREGEX_DMS4  = r"((?P<name>([\w\-\S])*)(?P<s0>[\s,;\t])*)(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+PREGEX_DMS4a = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s1>[\s,;\t])(?P<lon>([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+# v1 PREGEX_DMS4  = r"((?P<name>([\w\-\S])*)(?P<s0>[\s,;\t])*)(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+# v2 PREGEX_DMS4  = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+#PREGEX_DMS4  = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{1,2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{1,2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+
 PREGEX_DMS4         = r"(?:(?P<name>(?![NnEe]\d|[4-5]\d)[^\d\t\r\n][^\t\r\n]*?)(?P<s0>[\s,])+)?(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{1,2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{1,2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
 PREGEX_DMS4_FLIPPED = r"(?:(?P<name>(?![NnEe]\d|[4-5]\d)[^\d\t\r\n][^\t\r\n]*?)(?P<s0>[\s,])+)?(?P<lon>(([NEne]?)(?P<lon_d>2[3-9]|3[0-6])(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{1,2}([.][\d]+)*)|(?P<lon_dd>(2[3-9]|3[0-6])\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{1,2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+
 
 BBOX_RO_ST70 = [116424.61, 215561.44, 1018946.51, 771863.53] 
 BBOX_RO_ETRS = [    20.26,     43.44,      31.41,     48.27]
 
 def is_DMS(val):
-    """is the value in degree minutes seconds
-
-    Args:
-        val (any): any vaslue to test
-
-    Returns:
-        bool: true if valid DMS
-    """    
-    if val:
-        mo = re.search(PREGEX_DMS,val)
-        if mo:
-            return True
-        else:
-            return False
-    else:
         return False
 
 def is_DMS3(val):
-    """is the value in degree minutes seconds (3 sets)
-    Args:
-        val (any): any vaslue to test
-    Returns:
-        bool: true if valid DMS
-    """    
-    if val:
-        mo = re.search(PREGEX_DMS,val)
-        if mo:
-            return True
-        else:
-            return False
-    else:
         return False
 
-def is_inside_bounds(a:float, b:float, type:str = "etrs")->bool:
+def _is_inside_bounds(a:float, b:float, type:str = "etrs")->bool:
     """
     Determines whether the given coordinates (a, b) are within the bounds 
     of the specified coordinate system type.
@@ -136,6 +112,57 @@ def dd4_or_dms4(x) -> tuple[float, float, float, str]:
         #print(f"Bad value {x}")
         return np.nan, np.nan, np.nan, "error"
         #raise Exception("Bad Value") 
+
+def _parse_line_etrs(x) -> tuple[float, float, float, str, list[str]]:
+    """Converts parameter to decimal dgrees.
+        Also flips Lat/lon if needed
+    Args:
+        x (string, float, whatever): value to be converted
+    Raises:
+        Exception: "Bad Value" conversion cannot be done
+    Returns:
+        float: Decimal degrees
+    """
+    import re    
+
+    pointName = ''
+    comment = []
+
+    match = re.search(PREGEX_DMS4, x)
+    if not match:
+        # Try flipped version
+        match = re.search(PREGEX_DMS4_FLIPPED, x)
+        if not match:
+            return np.nan, np.nan, np.nan, pointName if pointName else 'invalid_format', ['invalid format'] 
+        flipped = True
+    else:
+        flipped = False
+
+    x = match.groupdict()
+    pointName = x['name'] if x['name'] else ''
+
+    def parse_coord(dd_key, d_key, m_key, s_key):
+        if x.get(d_key) and x.get(m_key) and x.get(s_key):
+            return float(x[d_key]) + float(x[m_key]) / 60 + float(x[s_key]) / 3600
+        elif x.get(dd_key):
+            return float(x[dd_key])
+        return np.nan
+
+    lat = parse_coord('lat_dd', 'lat_d', 'lat_m', 'lat_s')
+    lon = parse_coord('lon_dd', 'lon_d', 'lon_m', 'lon_s')
+    he = float(x['height']) if x['height'] else np.nan
+
+
+
+    if flipped:
+        lat, lon = lon, lat
+        comment.append('flipped lat/lon')
+
+    if not _is_inside_bounds(lat, lon, "etrs"):
+        lat, lon, he = np.nan, np.nan, np.nan
+        comment.append('out of bounds')
+
+    return lat, lon, he, pointName, comment
 
 def val_to_float(x):
     """Converts parameter to decimal dgrees
