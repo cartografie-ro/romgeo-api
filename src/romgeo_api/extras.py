@@ -7,8 +7,10 @@ import logging
 # LATEST
 
 PREGEX_DMS   = r"([NEne]?)(\d+)(\D+)(\d+)(\D+)([\d.]+)(\D)*"
-PREGEX_DMS4a = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s1>[\s,;\t])(?P<lon>([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
-PREGEX_DMS4  = r"((?P<name>([\w\-\S])*)(?P<s0>[\s,;\t])*)(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+#PREGEX_DMS4a = r"((?P<name>([\w\-\_\s\S])*)(?P<s0>[\s,;\t]))*(?P<lat>([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s1>[\s,;\t])(?P<lon>([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+#PREGEX_DMS4  = r"((?P<name>([\w\-\S])*)(?P<s0>[\s,;\t])*)(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+PREGEX_DMS4         = r"(?:(?P<name>(?![NnEe]\d|[4-5]\d)[^\d\t\r\n][^\t\r\n]*?)(?P<s0>[\s,])+)?(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{1,2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lon>(([NEne]?)(?P<lon_d>[23][\d]+)(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{1,2}([.][\d]+)*)|(?P<lon_dd>[23][\d]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
+PREGEX_DMS4_FLIPPED = r"(?:(?P<name>(?![NnEe]\d|[4-5]\d)[^\d\t\r\n][^\t\r\n]*?)(?P<s0>[\s,])+)?(?P<lon>(([NEne]?)(?P<lon_d>2[3-9]|3[0-6])(\D+)(?P<lon_m>\d+)(\D+)(?P<lon_s>[\d]{1,2}([.][\d]+)*)|(?P<lon_dd>(2[3-9]|3[0-6])\.[\d]*))(\D)*)(?P<s1>[\s,;\t])(?P<lat>(([NEne]?)(?P<lat_d>[4][345678]+)(\D+)(?P<lat_m>\d+)(\D+)(?P<lat_s>[\d]{1,2}([.][\d]+)*)|(?P<lat_dd>[4][345678]\.[\d]*))(\D)*)(?P<s2>[\s,;\t])(?P<height>[\d.]+)"
 
 BBOX_RO_ST70 = [116424.61, 215561.44, 1018946.51, 771863.53] 
 BBOX_RO_ETRS = [    20.26,     43.44,      31.41,     48.27]
