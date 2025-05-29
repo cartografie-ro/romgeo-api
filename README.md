@@ -6,6 +6,10 @@
 
 A simple FastAPI implementation of romgeo.
 
+## Available Online Services:
+- Web API Services [api.romgeo.ro](https://api.romgeo.ro/api/v1/demo.html)
+- API services help: [api.romgeo.ro/api/v1/docs](https://api.romgeo.ro/api/v1/docs)
+
 ## Requirements
  - romgeo
  - fastapi
