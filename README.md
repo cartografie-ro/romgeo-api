@@ -119,4 +119,4 @@ Example curl:
 
 ## Documentation is available here
 
-<https://github.com/cartografie-ro/romgeo-api/docs>
+<[https://github.com/cartografie-ro/romgeo-api/docs](https://github.com/cartografie-ro/romgeo-api/tree/main/docs)>
