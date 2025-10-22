@@ -1,5 +1,5 @@
-src/romgeo_api/__pycache__/__init__.cpython-310.pyc
-src/romgeo_api/__pycache__/extras.cpython-310.pyc
-src/romgeo_api/__pycache__/romgeo_api.cpython-310.pyc
-src/romgeo_api/grids/*
+__pycache__
 venv/
+src/romgeo_api/metrics
+src/romgeo_api/grids
+src/romgeo_api/romgeo_lite
