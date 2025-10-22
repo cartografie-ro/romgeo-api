@@ -2,3 +2,4 @@ src/romgeo_api/__pycache__/__init__.cpython-310.pyc
 src/romgeo_api/__pycache__/extras.cpython-310.pyc
 src/romgeo_api/__pycache__/romgeo_api.cpython-310.pyc
 src/romgeo_api/grids/*
+venv/
