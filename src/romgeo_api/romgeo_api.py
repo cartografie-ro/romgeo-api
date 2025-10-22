@@ -1,4 +1,5 @@
 import romgeo as rg
+#import romgeo_lite as rg
 import numpy as np
 import numba as nb
 import os
@@ -285,7 +286,7 @@ def Convert_LatLon(lat:str,
     st70_X = np.full_like(N, 0.0)
     st_H   = np.full_like(H, 0.0)
 
-    t = _do_transform(N, E, H, st70_Y, st70_X, st_H)
+    t = _do_transform(N, E, H, st70_Y, st70_X, st_H, grid)
     
     ret = f"{N[0]:.6f}, {E[0]:.6f}, {H[0]:.6f}, {st70_X[0]:.3f}, {st70_Y[0]:.3f}, {st_H[0]:.4f}"
 
@@ -335,7 +336,7 @@ def Convert_MultiText(multiText:list[str]=Query(DEF_MULTILIST, description="list
     st70_X = np.full_like(N, 0.0)
     st_H   = np.full_like(H, 0.0)
 
-    t = _do_transform(N, E, H, st70_Y, st70_X, st_H)
+    t = _do_transform(N, E, H, st70_Y, st70_X, st_H, grid)
 
     ret = list(zip(pct, N,E,H, st70_X,st70_Y, st_H))
 
@@ -373,7 +374,7 @@ def Convert_MultiText(multiText:list[str]=DEF_MULTILIST,
     st70_X = np.full_like(N, 0.0)
     st_H   = np.full_like(H, 0.0)
 
-    t = _do_transform(N, E, H, st70_Y, st70_X, st_H)
+    t = _do_transform(N, E, H, st70_Y, st70_X, st_H, grid)
 
     ret = list(zip(pct, N,E,H, st70_X,st70_Y, st_H))
 
@@ -426,7 +427,7 @@ def convert_multitext_to_shapefile(multiText: list[str] = DEF_MULTILIST,
     st70_X = np.full_like(N, 0.0)
     st_H   = np.full_like(H, 0.0)
 
-    _do_transform(N, E, H, st70_Y, st70_X, st_H)
+    _do_transform(N, E, H, st70_Y, st70_X, st_H, grid)
 
     # Prepare transformed data for GeoDataFrame
     columns = ["Name", "Latitude", "Longitude", "Height_Ellipsoidal", "st70_X", "st70_Y", "H_mn"]
@@ -521,7 +522,7 @@ def convert_multitext_to_dxf(multiText: list[str] = DEF_MULTILIST,
     st70_X = np.full_like(N, 0.0)
     st_H   = np.full_like(H, 0.0)
 
-    _do_transform(N, E, H, st70_Y, st70_X, st_H)
+    _do_transform(N, E, H, st70_Y, st70_X, st_H, grid)
 
     columns = ["Name", "Latitude", "Longitude", "Height_Ellipsoidal", "st70_X", "st70_Y", "H_mn"]
     transformed_data = list(zip(pct, N, E, H, st70_Y, st70_X, st_H))
