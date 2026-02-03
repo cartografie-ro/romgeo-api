@@ -112,10 +112,18 @@ Example curl:
 - Create a new Excel document.
 - Add values like 'Point_1 N45°25m35.123456s E25°15m45.123456s 123.4567' into a single column, let's say column A.
 - In B1 type this formula:
-   <code>=WEBSERVICE('https\://api.romgeo.ro/api/v1/transformText/' & A1 & '?astext=true')</code>
+  
+   <code>=WEBSERVICE("https\://api.romgeo.ro/api/v1/transformText/" & ENCODEURL(A1) & "?astext=true")</code>
 - Press enter
 - and drag-fill the formula down. You will get 'lat, lon, elipsoidal_height, X_northing, Y_easting, Z_blacksea'.
 - Convert column B to text, and split it with comma as separator.
+
+If you have 3 columns (Lat, Lon, Height) in A, B, C columns, you can use this formula:
+
+<code>=WEBSERVICE("https\://api.romgeo.ro/api/v1/tc/" & ENCODEURL(A1) & "/" & ENCODEURL(B1) & "/" ENCODEURL(C1) "/?astext=true")</code>
+
+## **NOTE**
+**RomGEO API needs an ellipsoidal height value! You cannot convert only lat,lon values. You can enter a height value of zero and ignore the returned Z_blacksea value.**
 
 ## Documentation is available here
 
