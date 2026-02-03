@@ -110,9 +110,20 @@ Exemplu curl:
 1. Creați un document Excel nou.
 2. Adăugați valori precum 'Point_1 N45°25m35.123456s E25°15m45.123456s 123.4567' într-o singură coloană, să zicem coloana A.
 3. În celula B1 introduceți formula:
+   
    <code>=WEBSERVICE('http\://api.romgeo.ro/api/v1/transformText/' & A1 & '?astext=true')</code>
-4. Apăsați enter și trageți formula în jos. Veți obține 'lat, lon, elipsoidal_height, X_northing, Y_easting, Z_blacksea'.
-5. Convertiți coloana B în text și împărțiți-o cu separatorul virgulă.
+   
+5. Apăsați enter și trageți formula în jos. Veți obține 'lat, lon, elipsoidal_height, X_northing, Y_easting, Z_blacksea'.
+6. Convertiți coloana B în text și împărțiți-o cu separatorul virgulă.
+
+Dacă aveți 3 coloane (Lat, Lon, height) în coloanele A, B, C, puteți folosi această formulă:
+
+<code>=WEBSERVICE("https\://api.romgeo.ro/api/v1/tc/" & ENCODEURL(A1) & "/" & ENCODEURL(B1) & "/" & ENCODEURL(C1) & "/?astext=true")
+</code>
+
+
+## **NOTĂ**
+**API-ul RomGEO necesită o valoare de înălțime elipsoidală. Nu se pot converti doar valori lat, lon. Puteți introduce o valoare a înălțimii egală cu zero și ignora valoarea returnată Z_Marea_Neagră.**
 
 ## Documentația este disponibilă aici
 
